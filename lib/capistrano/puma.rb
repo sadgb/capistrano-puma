@@ -30,8 +30,10 @@ module Capistrano
 
 
     def template_puma(from, to, role)
+      pp "#{to} role=#{role} hostname=#{role.hostname} class=#{role.class}"
       @role = role
       file = [
+          "config/deploy/templates/#{from}-#{role.name}.rb.erb",
           "lib/capistrano/templates/#{from}-#{role.hostname}-#{fetch(:stage)}.rb",
           "lib/capistrano/templates/#{from}-#{role.hostname}.rb",
           "lib/capistrano/templates/#{from}-#{fetch(:stage)}.rb",
